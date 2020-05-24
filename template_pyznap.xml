@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<zabbix_export>
+    <version>5.0</version>
+    <date>2020-05-24T19:05:36Z</date>
+    <groups>
+        <group>
+            <name>Templates</name>
+        </group>
+    </groups>
+    <templates>
+        <template>
+            <template>Template pyznap - Active Agent</template>
+            <name>Template pyznap - Active Agent</name>
+            <description>Template for monitoring ZFS snapshots by https://github.com/yboetz/pyznap.</description>
+            <groups>
+                <group>
+                    <name>Templates</name>
+                </group>
+            </groups>
+            <discovery_rules>
+                <discovery_rule>
+                    <name>Pyznap Discovery</name>
+                    <type>ZABBIX_ACTIVE</type>
+                    <key>pyznap.discovery</key>
+                    <delay>1h</delay>
+                    <item_prototypes>
+                        <item_prototype>
+                            <name>Pyznap Replication: Number of Snapshots on {#DEST_01}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.count[{#DEST_01}, total]</key>
+                            <delay>15m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap Replication: Number of Snapshots on {#DEST_02}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.count[{#DEST_02}, total]</key>
+                            <delay>15m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap: Number of Daily Snapshots of {#NAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.count[{#NAME}, daily]</key>
+                            <delay>15m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap: Number of Frequent Snapshots of {#NAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.count[{#NAME}, frequent]</key>
+                            <delay>15m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap: Number of Hourly Snapshots of {#NAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.count[{#NAME}, hourly]</key>
+                            <delay>15m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{last()}&gt;={$HOURLY}</expression>
+                                    <name>Pyznap cleaning is inactive</name>
+                                    <priority>INFO</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap: Number of Monthly Snapshots of {#NAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.count[{#NAME}, monthly]</key>
+                            <delay>15m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap: Number of Snapshots of {#NAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.count[{#NAME}, total]</key>
+                            <delay>15m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap: Number of Weekly Snapshots of {#NAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.count[{#NAME}, weekly]</key>
+                            <delay>15m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap: Number of Yearly Snapshots of {#NAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.count[{#NAME}, yearly]</key>
+                            <delay>15m</delay>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap Replication: Latest Snapshot on {#DEST_01}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.latest[{#DEST_01}]</key>
+                            <delay>10m</delay>
+                            <units>unixtime</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{fuzzytime({#FUZZYTIME_SEND})}=0</expression>
+                                    <name>Pyznap Replication of {#NAME} to {#DEST_01} is outstanding. It should run {#FREQUENCY_SEND}.</name>
+                                    <priority>AVERAGE</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap Replication: Latest Snapshot on {#DEST_02}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.latest[{#DEST_02}]</key>
+                            <delay>10m</delay>
+                            <units>unixtime</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{fuzzytime({#FUZZYTIME_SEND})}=0</expression>
+                                    <name>Pyznap Replication of {#NAME} to {#DEST_02} is outstanding. It should run {#FREQUENCY_SEND}.</name>
+                                    <priority>AVERAGE</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                        <item_prototype>
+                            <name>Pyznap: Latest Snapshot of {#NAME}</name>
+                            <type>ZABBIX_ACTIVE</type>
+                            <key>pyznap.latest[{#NAME}]</key>
+                            <delay>3m</delay>
+                            <units>unixtime</units>
+                            <application_prototypes>
+                                <application_prototype>
+                                    <name>pyznap [{#NAME}]</name>
+                                </application_prototype>
+                            </application_prototypes>
+                            <trigger_prototypes>
+                                <trigger_prototype>
+                                    <expression>{fuzzytime({#FUZZYTIME_SNAP})}=0</expression>
+                                    <name>Pyznap snapshot of {#NAME} is outstanding. It should run {#FREQUENCY_SNAP}.</name>
+                                    <priority>AVERAGE</priority>
+                                </trigger_prototype>
+                            </trigger_prototypes>
+                        </item_prototype>
+                    </item_prototypes>
+                    <lld_macro_paths>
+                        <lld_macro_path>
+                            <lld_macro>{#DEST_01}</lld_macro>
+                            <path>$..dest[0].first()</path>
+                        </lld_macro_path>
+                        <lld_macro_path>
+                            <lld_macro>{#DEST_02}</lld_macro>
+                            <path>$..dest[1].first()</path>
+                        </lld_macro_path>
+                    </lld_macro_paths>
+                    <preprocessing>
+                        <step>
+                            <type>JAVASCRIPT</type>
+                            <params>var jsonObject = JSON.parse(value);
+
+jsonObject.forEach(function(item) {
+  var fsnap = '{#FUZZYTIME_SNAP}';
+  var fsend = '{#FUZZYTIME_SEND}';
+  var fsnap_t = parseFloat(item[fsnap]) + parseFloat({$FUZZYTOLERANCE_SNAP});
+  var fsend_t = parseFloat(item[fsend]) + parseFloat({$FUZZYTOLERANCE_SEND});
+  item[fsnap] = fsnap_t;
+  item[fsend] = fsend_t;
+});
+
+return JSON.stringify(jsonObject);</params>
+                        </step>
+                    </preprocessing>
+                </discovery_rule>
+            </discovery_rules>
+            <macros>
+                <macro>
+                    <macro>{$FUZZYTOLERANCE_SEND}</macro>
+                    <value>600</value>
+                    <description>Adds a tolerance of x seconds to the time between each pyznap send. Default: 600 seconds.</description>
+                </macro>
+                <macro>
+                    <macro>{$FUZZYTOLERANCE_SNAP}</macro>
+                    <value>60</value>
+                    <description>Adds a tolerance of x seconds to the time between each pyznap snap. Default: 60 seconds.</description>
+                </macro>
+            </macros>
+        </template>
+    </templates>
+</zabbix_export>
