@@ -1,11 +1,18 @@
-# Zabbix Template: https://github.com/yboetz/pyznap
+# Zabbix Template: pyznap ZFS Snapshots
 
-Template for monitoring ZFS snapshots by [yboetz/pyznap](https://github.com/yboetz/pyznap). It will:
+Template for monitoring ZFS snapshots by [yboetz/pyznap](https://github.com/yboetz/pyznap).
 
-* Show the number of snapshots
-* Show timestamps of the latest snapshot & replication
-* Alerts when a snapshot is outstanding
-* Alerts when a cleaning is inactive
+* Show the number of snapshots on host & on destination
+* Show timestamps of the latest snapshot on host & on destination
+* Alert when a snapshot is outstanding
+* Alert when a cleaning is inactive
+
+### Requirements
+
+```
+apt install python3-pip
+pip3 install python-crontab
+```
 
 ### How to use
 
